@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from "next-auth/react"
 import styled from 'styled-components'
+import Link from 'next/link'
 
 const NavBg = styled.div`
     background-color: #1a1a1a;  
