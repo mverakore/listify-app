@@ -37,7 +37,9 @@ export function NavBar() {
             <NavBg>
 
                 <div>
-                    <h1>Listify</h1>
+                    <Link href='/home'>
+                        <h1>Listify</h1>
+                    </Link>
                 </div>
 
                 <ImgProfile
