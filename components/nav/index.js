@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from "next-auth/react"
 import styled from 'styled-components'
-import Link from 'next/link'
 
 const NavBg = styled.div`
     background-color: #1a1a1a;  
@@ -22,6 +21,11 @@ const ImgProfile = styled.img`
     margin-right: 4rem;
 `
 
+const StyledLink = styled.a`
+    color: white;
+    text-decoration: none;
+    `
+
 export function NavBar() {
 
     const router = useRouter()
@@ -38,9 +42,9 @@ export function NavBar() {
             <NavBg>
 
                 <div>
-                    <Link href='/home'>
+                    <StyledLink href='/home'>
                         <h1>Listify</h1>
-                    </Link>
+                    </StyledLink>
                 </div>
 
                 <ImgProfile
