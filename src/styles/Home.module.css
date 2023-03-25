@@ -38,7 +38,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 60rem;
+  width: 55rem;
   height: 12rem;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
@@ -58,7 +58,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 40rem;
+  width: 45rem;
   height: 100%;
   margin: 0rem 5rem;
   font-size: 1.5rem;
