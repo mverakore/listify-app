@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Epilogue:wght@400;500;700&display=swap');
+
+html,body {
+  font-family: 'Epilogue', sans-serif;
+  background-color: white;
+  color: #1B1B1B;
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+}
