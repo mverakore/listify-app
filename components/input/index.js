@@ -16,7 +16,7 @@ const StyledTaskForm = styled.form`
     align-items: flex-end;
     justify-content: flex-end;
     width: 100%;
-    height: 12rem;
+    height: 5rem;
     // margin: 0rem 0rem 5rem 0rem;
 `
 // const StyledBg = styled.div`
