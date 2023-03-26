@@ -67,6 +67,15 @@ const SignOutbttn = styled.button`
     background-color: #B72323;
 }
     `
+
+const Logo = styled.h1`
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-family: 'Days One', sans-serif;
+    `
+
 export function NavBar() {
 
     const router = useRouter()
@@ -76,8 +85,8 @@ export function NavBar() {
     const navigation = [
         { name: 'New', href: '/home', current: router.pathname === '/home' },
     ]
-    
-const [showPopUp, setShowPopUp] = useState(false)
+
+    const [showPopUp, setShowPopUp] = useState(false)
 
     if (!session) {
         return (
@@ -86,7 +95,7 @@ const [showPopUp, setShowPopUp] = useState(false)
 
                 <div>
                     <StyledLink href='/home'>
-                        <h1>Listify</h1>
+                        <Logo>Listify</Logo>
                     </StyledLink>
                 </div>
 
@@ -104,21 +113,23 @@ const [showPopUp, setShowPopUp] = useState(false)
             <NavBg>
 
                 <div>
-                    <h1>Listify</h1>
+                    <StyledLink href='/home'>
+                        <Logo>Listify</Logo>
+                    </StyledLink>
                 </div>
 
                 <ImgProfile
-                navigation={navigation}
-                user={session?.user}
-                onClick={() => setShowPopUp(!showPopUp)}
-                src={session.user.image} ></ImgProfile>
-            {/* <p>{session.user.name}</p> */}
-            { showPopUp && <SignOutPopUp>
-                <NormalProfile src={session.user.image}></NormalProfile>
-                <StyledInfo>{session.user.name}</StyledInfo>
-                <StyledInfo>{session.user.email}</StyledInfo>
-                <SignOutbttn onClick={()=>signOut()}>Sign Out</SignOutbttn>
-            </SignOutPopUp>}
+                    navigation={navigation}
+                    user={session?.user}
+                    onClick={() => setShowPopUp(!showPopUp)}
+                    src={session.user.image} ></ImgProfile>
+                {/* <p>{session.user.name}</p> */}
+                {showPopUp && <SignOutPopUp>
+                    <NormalProfile src={session.user.image}></NormalProfile>
+                    <StyledInfo>{session.user.name}</StyledInfo>
+                    <StyledInfo>{session.user.email}</StyledInfo>
+                    <SignOutbttn onClick={() => signOut()}>Sign Out</SignOutbttn>
+                </SignOutPopUp>}
 
             </NavBg>
         </>
