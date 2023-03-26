@@ -24,7 +24,7 @@ export default function Home({ list: intialList }) {
   const [isClicked, setIsClicked] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
   const [newlistName, setNewListName] = useState("")
-  const [editStates, setEditStates] = useState(list.map(() => false));
+  const [editStates, setEditStates] = useState(intialList.map(() => false))
 
 
   const handleSubmit = async (e) => {
@@ -146,51 +146,6 @@ export default function Home({ list: intialList }) {
               ))}
             </div>
         }
-
-        {/* {list.length === 0 ? (
-          <div className={styles.notask}>
-            <h2>Empty like my soul</h2>
-            <img src='/emptystate.svg' width={200} height={200}></img>
-          </div>)
-          : (
-            <div>
-              {list.map((o, index) => (
-                <div key={o.id} className={styles.listbg} style={{ ...bgStyles[index % bgStyles.length], zIndex: index }}
-                  onClick={() => r.push({
-                    pathname: `/home/${o.id}`,
-                    query: { name: o.name }
-                  })}
-                >
-                  <div key={o.id} className={styles.list}>
-                  {isEdit && !editStates[index] ? (
-                      <form onSubmit={(e) => handleEdit(e, o.id, index)} key={o.id}>
-                        <input className={styles.input}
-                          type="text"
-                          value={newlistName}
-                          placeholder={o.name}
-                          onChange={(e) => setNewListName(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                        </input>
-                      </form>
-                    ) : (
-                      <p className={styles.link}>
-                        <img src="/folder.svg" width={65} height={65}></img>
-                        {o.name}
-                      </p>
-                    )}
-
-                    {isClicked ? (
-                      <button className={styles.delete} onClick={(e) => handleDelete(e, o.id)}>Delete</button>
-                    )
-                      :
-                      <p>{o.taskCount} tasks</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )} */}
-
       </main>
     </>
   )
@@ -205,14 +160,3 @@ export async function getServerSideProps() {
     },
   }
 }
-
-
-{/* <div key={o.id} className={styles.list}>
-                    {isEdit ? (
-                      <button className={styles.edit} onClick={(e) => {setInput(!input); e.stopPropagation()}}>Edit</button>
-                    ) : (
-                      <p className={styles.link}>
-                        <img src="/folder.svg" width={65} height={65}></img>
-                        {o.name}
-                      </p>
-                    )} */}
