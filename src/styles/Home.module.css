@@ -79,6 +79,10 @@
   padding: 2rem;
 }
 
+.taskcont > div {
+  width: 100%;
+}
+
 .notask {
   display: flex;
   flex-direction: column;

@@ -31,10 +31,10 @@ const TaskBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-   width: 53rem;
+  width: 100%;
   background-color: #FAF8FF;
   border-radius: 20px;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 0.5rem;
   margin: 0.5rem 0rem;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   positon: relative;
