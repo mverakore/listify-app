@@ -110,6 +110,13 @@
   border: none;
 }
 
+.editbttn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .delete:hover {
   background-color: #EB3535;
   padding: 1rem 3rem; 

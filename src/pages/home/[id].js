@@ -14,6 +14,9 @@ export default function Home({ desc, id, listId, completed: test, taskId, task: 
     const [newTask, setNewTask] = useState("")
     const router = useRouter()
     const { name } = router.query
+    const [newTaskDesc, setNewTaskDesc] = useState("")
+    
+    
 
     const r = useRouter()
 
@@ -25,7 +28,7 @@ export default function Home({ desc, id, listId, completed: test, taskId, task: 
         })
         const slayTask = response.data
         setNewTask("")
-        setTask([slayTask, ...task]);
+        setTask([...task , slayTask]);
     }
 
     const handleToggle = async (taskId) => {
@@ -42,7 +45,22 @@ export default function Home({ desc, id, listId, completed: test, taskId, task: 
         setTask(task.map(t => t.taskId === taskId ? updatedTask : t));
     }
 
-
+    const handleDelete = async (taskId) => {
+        await axios.delete(`/api/list/${id}/tasks/${taskId}`);
+        setTask(task.filter(t => t.taskId !== taskId));
+    }
+    
+    const handlePatch = async (taskId, listId, e) => {
+        e.preventDefault();
+        const updatedTask = task.find((t) => t.taskId === taskId);
+        updatedTask.desc = newTaskDesc;
+        await axios.patch(`/api/list/${listId}/tasks/${taskId}`, {
+          desc: newTaskDesc,
+          taskId: taskId,
+        });
+        setTask(task.map((t) => (t.taskId === taskId ? updatedTask : t)));
+        setNewTaskDesc("");
+      };
 
     return (
         <>
@@ -61,7 +79,7 @@ export default function Home({ desc, id, listId, completed: test, taskId, task: 
                             <h1>{name}</h1>
                         </div>
                         <div>
-                            <h1>{task.length} tasks</h1>
+                        <h1>{task.length} tasks</h1>
                         </div>
                     </div>
                     <hr className={styles.hr}></hr>
@@ -76,8 +94,12 @@ export default function Home({ desc, id, listId, completed: test, taskId, task: 
                             {task.map((o, i) => (
                                 <Task key={i}
                                     txt={o.desc}
+                                    value={newTaskDesc}
                                     completed={o.completed}
                                     onHandleClick={() => handleToggle(o.taskId)}
+                                    onHandleDelete={() => handleDelete(o.taskId)}
+                                   onHandleChange={(e) => setNewTaskDesc(e.target.value)}
+                                   onHandleSubmit={(e) => handlePatch(o.taskId, id, e)}
                                 ></Task>
                             ))}
                         </div>

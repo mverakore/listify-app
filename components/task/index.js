@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -22,19 +22,129 @@ const TaskCont = styled.div`
 const StyledLabel = styled.label`
   font-size: 1.2rem;
   color: #1B1B1B;
+&:hover {
+  cursor: pointer;
+}
+`
+const TaskBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 56rem;
+  gap: 0.5rem;
+  background-color: #FAF8FF;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  positon: relative;
 `
 
-export default function Task({ txt, checked, taskId, id, onHandleClick = () => {}, completed}) {
-  
+const Delete = styled.img`
+  width: 2rem;
+  height: 2rem;
+&:hover {
+  cursor: pointer;
+}
+`
+
+const Options = styled.img`
+  width: 2rem;
+  height: 2rem;
+&:hover {
+  cursor: pointer;
+}
+`
+
+const PopupCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 1rem;
+  position: absolute;
+  top: 390px;
+  right: 165px;
+  background: rgba(27, 27, 27, 0.9);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  `
+const Line = styled.hr`
+  width: 100%;
+  border: 1px solid white;
+`
+const OptionTxt = styled.p`
+  font-size: 1.2rem;
+  color: white;
+  margin 0rem;
+`
+const StyledInput = styled.input.attrs({ type: 'text' })`
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #1b1b1b;
+  background: transparent;
+  font-size: 1.2rem;
+&:focus {
+  outline: none;
+}
+`
+
+export default function Task({ txt,
+  onHandleClick = () => { },
+  completed,
+  onHandleDelete = () => { },
+  value,
+  onHandleSubmit = () => { },
+  onHandleChange = () => {}
+}) {
+
+  const [showEdit, setShowEdit] = useState(false);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (showEdit && !event.target.classList.contains("input") && !event.target.htmlFor) {
+        setShowEdit(false);
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showEdit]);
+
   return (
-    <TaskCont>
-      <StyledCheckbox
-        checked={completed}
-        onChange={onHandleClick}
-        type="checkbox"
-        name={txt}
-      />
-      <StyledLabel htmlFor={txt}>{txt}</StyledLabel>
-    </TaskCont>
+    <>
+      <TaskBar>
+        <TaskCont>
+          <StyledCheckbox
+            checked={completed}
+            onChange={onHandleClick}
+            type="checkbox"
+            name={txt}
+          />
+
+          {!showEdit ?
+            <StyledLabel htmlFor={txt}
+              onClick={() => setShowEdit(!showEdit)}
+            >{txt}</StyledLabel>
+            :
+            <form 
+            onSubmit={onHandleSubmit}>
+              <StyledInput className="input"
+               type="text"
+                placeholder={txt}
+                value={value}
+                name={txt} 
+                onChange={onHandleChange}
+                />
+            </form>
+          }
+
+        </TaskCont>
+        <Delete src="/delete_x.svg" onClick={onHandleDelete} />
+      </TaskBar>
+    </>
   );
 }
