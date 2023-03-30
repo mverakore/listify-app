@@ -25,8 +25,21 @@ export default function Home({ list: intialList }) {
   const [isEdit, setIsEdit] = useState(false)
   const [newlistName, setNewListName] = useState("")
   const [editStates, setEditStates] = useState(intialList.map(() => false))
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
+  if (isLoading) {
+    return <div className={styles.main}>
+      <img src='/114447-loading-bar-black.gif'></img>
+    </div>;
+  }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post('/api/list', {
@@ -78,6 +91,7 @@ export default function Home({ list: intialList }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+    
       <main className={styles.main}>
         <div className={styles.topcont}>
           
