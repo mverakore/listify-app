@@ -31,8 +31,7 @@ const TaskBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  gap: 0.5rem;
+   width: 53rem;
   background-color: #FAF8FF;
   border-radius: 20px;
   padding: 0.5rem 1rem;
@@ -49,36 +48,6 @@ const Delete = styled.img`
 }
 `
 
-const Options = styled.img`
-  width: 2rem;
-  height: 2rem;
-&:hover {
-  cursor: pointer;
-}
-`
-
-const PopupCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  border-radius: 20px;
-  padding: 1rem;
-  position: absolute;
-  top: 390px;
-  right: 165px;
-  background: rgba(27, 27, 27, 0.9);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  `
-const Line = styled.hr`
-  width: 100%;
-  border: 1px solid white;
-`
-const OptionTxt = styled.p`
-  font-size: 1.2rem;
-  color: white;
-  margin 0rem;
-`
 const StyledInput = styled.input.attrs({ type: 'text' })`
   width: 100%;
   border: none;
