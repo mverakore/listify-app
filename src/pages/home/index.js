@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { Profile } from '../../../components/profile'
 import { NavBar } from '../../../components/nav'
+import { getSession } from 'next-auth/react'
 
 export default function Home({ list: intialList }) {
 
@@ -27,19 +28,6 @@ export default function Home({ list: intialList }) {
   const [editStates, setEditStates] = useState(intialList.map(() => false))
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <div className={styles.main}>
-      <img src='/114447-loading-bar-black.gif'></img>
-    </div>;
-  }
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post('/api/list', {
@@ -165,12 +153,13 @@ export default function Home({ list: intialList }) {
   )
 }
 
-export async function getServerSideProps() {
-  const list = await prisma.list.findMany()
+export async function getServerSideProps({req}) {
 
+  const list = await prisma.list.findMany()
   return {
     props: {
       list: JSON.parse(JSON.stringify(list)),
     },
+    
   }
 }
