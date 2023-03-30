@@ -24,6 +24,7 @@ const StyledLabel = styled.label`
   color: #1B1B1B;
 &:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 `
 const TaskBar = styled.div`
