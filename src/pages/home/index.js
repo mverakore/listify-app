@@ -28,6 +28,19 @@ export default function Home({ list: intialList }) {
   const [editStates, setEditStates] = useState(intialList.map(() => false))
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchList = async () => {
+      const response = await axios.get(`/api/list?userId=${session.user.id}`)
+      setList(response.data)
+      setEditStates(response.data.map(() => false))
+      setIsLoading(false)
+    }
+    if (session) {
+      fetchList()
+    }
+  }, [session])
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post('/api/list', {
