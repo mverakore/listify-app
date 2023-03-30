@@ -31,7 +31,7 @@ const TaskBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 56rem;
+  width: 100%;
   gap: 0.5rem;
   background-color: #FAF8FF;
   border-radius: 20px;
