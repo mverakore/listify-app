@@ -121,7 +121,7 @@ export default function Home({ list: intialList }) {
         ></NewList>}
         {!session ? (
           <div className={styles.notask}>
-            <h2>You're not log in right now!</h2>
+            <h2>You're not logged in right now!</h2>
             <img src='/nouser.svg' width={200} height={200}></img>
           </div>)
           : list.length === 0 ? (
