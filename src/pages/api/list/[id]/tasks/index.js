@@ -38,25 +38,6 @@ export default async function handler(req, res) {
       },
     });
     
-
-    // const list = await prisma.list.findUnique({
-    //   where: {
-    //     desc,
-    //    id: listId,
-    //   },
-    // });
-
-    // if (!list) {
-    //   return res.status(404).json({ message: 'List not found' });
-    // }
-
-    // const task = await prisma.task.create({
-    //   data: {
-    //     desc,
-    //     listId: listId,
-    //   },
-    // });
-
     await prisma.list.update({
       where: {
         id: listId,
