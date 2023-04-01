@@ -41,12 +41,11 @@ export default function Home({ list: intialList }) {
     }
   }, [session])
 
-  if (isLoading) {
+  if (isLoading && session) {
     return <div className={styles.main}>
       <img src='/114447-loading-bar-black.gif'></img>
     </div>
-  }
-  
+  } 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
